@@ -1,0 +1,47 @@
+name: Restreamer
+package: cloud.lazycat.app.restreamer
+version: 2.12.0
+min_os_version: 1.3.8
+description: 一个非常好且免费的直播流处理替代方案
+homepage: https://github.com/datarhei/restreamer
+author: datarhei
+application:
+  subdomain: restreamer
+  background_task: true
+  usb_accel: true
+  public_path:
+    - /
+
+  upstreams:
+    - location: /
+      backend: http://restreamer:8080/
+
+  ingress:
+    - protocol: tcp
+      port: 1935
+      service: restreamer
+
+    - protocol: tcp
+      port: 1936
+      service: restreamer
+
+    - protocol: udp
+      port: 6000
+      service: restreamer
+
+services:
+  restreamer:
+    #  datarhei/restreamer:2.12.0
+    image: registry.lazycat.cloud/czyt/datarhei/restreamer:01dbd5a46d39fb84
+    environment:
+    binds:
+      - /lzcapp/var/config:/core/config
+      - /lzcapp/var/data:/core/data
+
+locales:
+  zh:
+    name: "Restreamer"
+    description: "一个非常好且免费的直播流处理替代方案"
+  en:
+    name: "Restreamer"
+    description: "A really nice and free alternative for handling live streams."
