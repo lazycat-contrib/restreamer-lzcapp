@@ -1,4 +1,5 @@
 package: cloud.lazycat.app.restreamer
+license: Apache-2.0
 version: 2.12.0
 name: Restreamer
 description: "一个非常好且免费的直播流处理替代方案"
